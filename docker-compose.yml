@@ -58,6 +58,4 @@ services:
 
 
   rippled:
-    build:
-      context: .
-      dockerfile: ./.docker/rippled.Dockerfile
+    image: infrakube_rippled:latest
