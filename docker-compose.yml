@@ -1,0 +1,73 @@
+version: "3"
+
+services:
+
+  bitcoin:
+    image: ruimarinho/bitcoin-core:0.16
+    command:
+      -whitelist=0.0.0.0
+      -txindex=0
+      -listen=1
+      -server=1
+      -irc=1
+      -upnp=1
+      -port=8332
+      -rpcport=8333
+      -rpcallowip=0.0.0.0/0
+      -rpcbind=0.0.0.0
+      -rpcuser=bitcorenodetest
+      -rpcpassword=local321
+
+  bitcoin_testnet:
+    image: ruimarinho/bitcoin-core:0.16
+    command:
+      -whitelist=0.0.0.0
+      -txindex=0
+      -listen=1
+      -server=1
+      -testnet=1
+      -irc=1
+      -upnp=1
+      -port=18332
+      -rpcport=18333
+      -rpcallowip=0.0.0.0/0
+      -rpcbind=0.0.0.0
+      -rpcuser=bitcorenodetest
+      -rpcpassword=local321
+
+  parity:
+    image: parity/parity:v2.4.6
+    ports:
+      - "8545:8545"
+      - "8546:8546"
+    command:
+      --jsonrpc-interface=0.0.0.0
+      --ws-interface=0.0.0.0
+      --ws-port=8546
+      --jsonrpc-apis=all
+      --ws-apis=all
+
+
+  parity_test:
+    image: parity/parity:v2.4.6
+    ports:
+      - "8545:8545"
+      - "8546:8546"
+    volumes:
+      - ./.docker/parity-password:/data/pw
+    command:
+      --config=dev
+      --jsonrpc-interface=0.0.0.0
+      --ws-interface=0.0.0.0
+      --ws-port=8546
+      --jsonrpc-apis=all
+      --ws-apis=all
+      --unlock 00a329c0648769a73afac7f9381e08fb43dbea72
+      --password /data/pw
+
+
+
+  rippled:
+    build:
+      context: .
+      dockerfile: ./.docker/rippled.Dockerfile
