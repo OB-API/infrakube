@@ -47,9 +47,6 @@ services:
 
   parity_test:
     image: parity/parity:v2.4.6
-    ports:
-      - "8545:8545"
-      - "8546:8546"
     volumes:
       - ./.docker/parity-password:/data/pw
     command:
