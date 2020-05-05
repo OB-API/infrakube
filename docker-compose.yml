@@ -56,6 +56,5 @@ services:
       --ws-apis=all
 
 
-
   rippled:
     image: infrakube_rippled:latest
