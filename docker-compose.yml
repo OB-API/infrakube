@@ -8,7 +8,7 @@ services:
       - 8332:8332
       - 8333:8333
     command:
-      -whitelist=0.0.0.0
+      -whitelist=0.0.0.0/0
       -txindex=0
       -listen=1
       -server=1
@@ -27,7 +27,7 @@ services:
       - 18332:18332
       - 18333:18333
     command:
-      -whitelist=0.0.0.0
+      -whitelist=0.0.0.0/0
       -txindex=0
       -listen=1
       -server=1
@@ -42,7 +42,7 @@ services:
       -rpcpassword=local321
 
   parity:
-    image: parity/parity:v2.4.6
+    image: parity/parity:v2.7.2-stable
     ports:
       - 8545:8545
       - 8546:8546
@@ -55,7 +55,7 @@ services:
 
 
   parity_test:
-    image: parity/parity:v2.4.6
+    image: parity/parity:v2.7.2-stable
     ports:
       - 8547:8547
       - 8548:8548
